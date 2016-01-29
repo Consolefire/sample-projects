@@ -16,25 +16,25 @@ public class ContextServiceImpl implements ContextService {
 	private ContextDao contextDao;
 	
 	@Override
-	@Transactional(propagation=Propagation.REQUIRES_NEW, readOnly=false)
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public Context create(Context context) {
 		return contextDao.create(context);
 	}
 
 	@Override
-	@Transactional(propagation=Propagation.REQUIRES_NEW, readOnly=true)
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	public Context read(Long id) {
 		return contextDao.read(id);
 	}
 
 	@Override
-	@Transactional(propagation=Propagation.REQUIRES_NEW, readOnly=false)
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public Context update(Context context) {
 		return contextDao.update(context);
 	}
 
 	@Override
-	@Transactional(propagation=Propagation.REQUIRES_NEW, readOnly=false)
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public void delete(Long id) {
 		contextDao.delete(id);
 	}

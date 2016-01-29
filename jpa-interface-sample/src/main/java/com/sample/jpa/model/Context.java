@@ -2,10 +2,7 @@ package com.sample.jpa.model;
 
 import java.util.Set;
 
-import javax.persistence.MappedSuperclass;
 
-
-@MappedSuperclass
 public interface Context {
 
 	Long getId();
