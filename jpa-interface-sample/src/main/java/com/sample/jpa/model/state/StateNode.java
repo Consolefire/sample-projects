@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,23 +49,25 @@ public class StateNode extends Node<State> {
   }
 
   @Override
-  @OneToMany(mappedBy="source", targetEntity=StateTransition.class)
+  @OneToMany(mappedBy="source", targetEntity=StateTransition.class, cascade=CascadeType.ALL)
   public Set<Edge<State>> getEdges() {
     return super.getEdges();
   }
   
-  /* (non-Javadoc)
-   * @see com.sample.jpa.model.Node#getOrder()
-   */
+  
   @Override
   @Column(name="seq")
   public int getOrder() {
-    // TODO Auto-generated method stub
     return super.getOrder();
   }
   
   @Override
   public Node<State> addEdge(Node<State> source, Node<State> target) {
-    return null;
+    StateTransition transition = new StateTransition();
+    transition.setSource(source);
+    transition.setTarget(target);
+    transition.setWeight(1);
+    getEdges().add(transition);
+    return this;
   }
 }

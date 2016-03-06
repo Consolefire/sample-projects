@@ -14,13 +14,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.sample.jpa.model.Edge;
 import com.sample.jpa.model.Node;
 import com.sample.jpa.model.action.ActionComposition;
 
-import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
@@ -30,6 +29,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table
+@NoArgsConstructor
 @Access(AccessType.PROPERTY)
 public class StateTransition extends Edge<State> {
 
@@ -63,6 +63,7 @@ public class StateTransition extends Edge<State> {
   public int getWeight() {
     return super.getWeight();
   }
+  
   
   
 }
