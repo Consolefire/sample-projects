@@ -37,7 +37,8 @@ public class Config {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.hsqldb.jdbcDriver");
-		dataSource.setUrl("jdbc:hsqldb:mem:testdb");
+		//dataSource.setUrl("jdbc:hsqldb:mem:testdb");
+		dataSource.setUrl("jdbc:hsqldb:hsql://localhost/node_db");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("");
 		return dataSource;
@@ -58,6 +59,8 @@ public class Config {
 	private Properties hibernateProperties() {
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		properties.setProperty("hibernate.show_sql", "true");
+	      properties.setProperty("hibernate.format_sql", "true");
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
 		return properties;
 	}
