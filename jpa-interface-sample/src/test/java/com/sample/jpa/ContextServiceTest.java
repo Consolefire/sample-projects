@@ -8,10 +8,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sample.jpa.dao.ActionCompositionRepo;
+import com.sample.jpa.dao.ActionNodeRepo;
+import com.sample.jpa.dao.ActionRepo;
+import com.sample.jpa.dao.ActionTransitionRepo;
 import com.sample.jpa.dao.ServiceRepo;
 import com.sample.jpa.dao.StateNodeRepo;
 import com.sample.jpa.dao.StateRepo;
 import com.sample.jpa.dao.StateTransitionRepo;
+import com.sample.jpa.model.action.Action;
+import com.sample.jpa.model.action.ActionComposition;
+import com.sample.jpa.model.action.ActionNode;
 import com.sample.jpa.model.service.Service;
 import com.sample.jpa.model.state.State;
 import com.sample.jpa.model.state.StateDiagram;
@@ -29,6 +36,15 @@ public class ContextServiceTest {
   private StateTransitionRepo stateTransitionRepo;
   @Autowired
   private StateNodeRepo stateNodeRepo;
+  
+  @Autowired
+  private ActionRepo  actionRepo;
+  @Autowired
+  private ActionNodeRepo actionNodeRepo;
+  @Autowired
+  private ActionCompositionRepo actionCompositionRepo;
+  @Autowired
+  private ActionTransitionRepo actionTransitionRepo;
 
   // @Test
   public void t1() {
@@ -192,5 +208,64 @@ public class ContextServiceTest {
 
   }
 
+  @Test
+  @Transactional(propagation = Propagation.REQUIRES_NEW, readOnly = false)
+  public void testStateWithActionDiagram(){
+    Action a1 = new Action();
+    a1.setActionId("a1");
+    a1 = actionRepo.save(a1);
+    
+    ActionNode an1 = new ActionNode();
+    an1.setData(a1);
+    
+    
+    Action a2 = new Action();
+    a2.setActionId("a2");
+    a2 = actionRepo.save(a2);
+    
+    ActionNode an2 = new ActionNode();
+    an2.setData(a2);
+    
+    
+    Action a3 = new Action();
+    a3.setActionId("a3");
+    a3 = actionRepo.save(a3);
+    
+    ActionNode an3 = new ActionNode();
+    an3.setData(a3);
+    
+    Action a4 = new Action();
+    a4.setActionId("a4");
+    a4 = actionRepo.save(a4);
+    
+    ActionNode an4 = new ActionNode();
+    an4.setData(a4);
+    
+    an1.addEdge(an1, an2);
+    an1.addEdge(an1, an3);
+    an2.addEdge(an2, an4);
+    an3.addEdge(an3, an4);
+    
+    
+    an1 = actionNodeRepo.save(an1);
+    an2 = actionNodeRepo.save(an2);
+    an3 = actionNodeRepo.save(an3);
+    an4 = actionNodeRepo.save(an4);
+    
+    
+    State s1 = new State();
+    s1.setStateCode("S1");
+    s1 = stateRepo.save(s1);
+    StateNode sn1 = new StateNode();
+    sn1.setData(s1);
+    
+    ActionComposition actionComposition = new ActionComposition();
+    actionComposition.setOwner(sn1);
+    actionComposition.setRoot(an1);
+    
+    sn1.setPreActions(actionComposition);
+    
+    stateNodeRepo.save(sn1);
+  }
   
 }

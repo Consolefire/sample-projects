@@ -5,6 +5,7 @@ package com.sample.jpa.model.action;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,6 @@ import javax.persistence.Table;
 import com.sample.jpa.model.Edge;
 import com.sample.jpa.model.Node;
 
-import lombok.Getter;
 import lombok.Setter;
 
 /**
@@ -40,14 +40,14 @@ public class ActionTransition extends Edge<Action> {
   }
   
   @Override
-  @ManyToOne(targetEntity=ActionNode.class)
+  @ManyToOne(targetEntity=ActionNode.class, cascade=CascadeType.ALL)
   @PrimaryKeyJoinColumn
   public Node<Action> getSource() {
     return super.getSource();
   }
 
   @Override
-  @OneToOne(targetEntity=ActionNode.class)
+  @OneToOne(targetEntity=ActionNode.class, cascade=CascadeType.ALL)
   @JoinColumn(name="target_node_id")
   public Node<Action> getTarget() {
     return super.getTarget();

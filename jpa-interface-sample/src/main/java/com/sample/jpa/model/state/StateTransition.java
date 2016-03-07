@@ -5,6 +5,7 @@ package com.sample.jpa.model.state;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -46,14 +47,14 @@ public class StateTransition extends Edge<State> {
   private ActionComposition transitionActions;
 
   @Override
-  @ManyToOne(targetEntity=StateNode.class)
+  @ManyToOne(targetEntity=StateNode.class, cascade=CascadeType.ALL)
   @PrimaryKeyJoinColumn
   public Node<State> getSource() {
     return super.getSource();
   }
 
   @Override
-  @OneToOne(targetEntity=StateNode.class)
+  @OneToOne(targetEntity=StateNode.class, cascade=CascadeType.ALL)
   @JoinColumn(name="target_node_id")
   public Node<State> getTarget() {
     return super.getTarget();

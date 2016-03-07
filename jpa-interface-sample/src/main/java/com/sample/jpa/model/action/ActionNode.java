@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,7 +49,7 @@ public class ActionNode extends Node<Action> {
   }
 
   @Override
-  @OneToMany(mappedBy="source", targetEntity=ActionTransition.class)
+  @OneToMany(mappedBy="source", targetEntity=ActionTransition.class, cascade=CascadeType.ALL)
   public Set<Edge<Action>> getEdges() {
     return super.getEdges();
   }
