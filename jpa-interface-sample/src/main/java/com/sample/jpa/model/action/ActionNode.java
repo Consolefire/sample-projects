@@ -18,8 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.sample.jpa.model.Edge;
-import com.sample.jpa.model.Node;
+import com.sample.jpa.model.framework.Edge;
+import com.sample.jpa.model.framework.Node;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -34,6 +34,14 @@ import lombok.Setter;
 @Setter
 @Access(AccessType.PROPERTY)
 public class ActionNode extends Node<Action> {
+
+  /**
+   * @param data
+   */
+  public ActionNode(Action data) {
+    super(data);
+  }
+
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)

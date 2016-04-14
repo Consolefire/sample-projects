@@ -16,9 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.sample.jpa.model.Composition;
-import com.sample.jpa.model.Node;
-import com.sample.jpa.model.state.State;
+import com.sample.jpa.model.framework.DirectedGraph;
 import com.sample.jpa.model.state.StateNode;
 
 import lombok.Setter;
@@ -30,7 +28,7 @@ import lombok.Setter;
 @Entity
 @Table
 @Access(AccessType.PROPERTY)
-public class ActionComposition extends Composition<StateNode, Action, ActionNode> {
+public class ActionComposition extends DirectedGraph<StateNode, Action, ActionNode> {
 
   
   @Setter
@@ -57,12 +55,7 @@ public class ActionComposition extends Composition<StateNode, Action, ActionNode
     return super.getOwner();
   }
 
-  @Override
-  @OneToOne(targetEntity=ActionNode.class)
-  @JoinColumn(name="root_node_id")
-  public ActionNode getRoot() {
-    return super.getRoot();
-  }
+ 
   
   
   

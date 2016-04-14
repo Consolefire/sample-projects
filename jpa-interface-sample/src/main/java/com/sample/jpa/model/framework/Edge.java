@@ -1,4 +1,6 @@
-package com.sample.jpa.model;
+package com.sample.jpa.model.framework;
+
+import com.sample.jpa.model.BaseEntity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,12 +12,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public abstract class Edge<T> {
-  
+public class Edge<T> extends BaseEntity{
   
   private Node<T> source;
-  
-  
   private Node<T> target;
    
   private int weight;

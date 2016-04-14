@@ -16,9 +16,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import com.sample.jpa.model.Edge;
-import com.sample.jpa.model.Node;
 import com.sample.jpa.model.action.ActionComposition;
+import com.sample.jpa.model.framework.Edge;
+import com.sample.jpa.model.framework.Node;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,6 +36,7 @@ public class StateTransition extends Edge<State> {
 
   @Setter
   private Long id;
+  
 
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)

@@ -20,9 +20,21 @@ import lombok.Setter;
 @Setter
 public class State {
 
+  
+  
   @Id
   private String stateCode;
   private String displayName;
+  
+  @Override
+  public String toString() {
+    StringBuilder builder = new StringBuilder();
+    builder.append("State [");
+    if (stateCode != null)
+      builder.append("stateCode=").append(stateCode);
+    builder.append("]");
+    return builder.toString();
+  }
 
   
 }

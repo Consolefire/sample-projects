@@ -16,8 +16,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import com.sample.jpa.model.Edge;
-import com.sample.jpa.model.Node;
+import com.sample.jpa.model.framework.Edge;
+import com.sample.jpa.model.framework.Node;
 
 import lombok.Setter;
 

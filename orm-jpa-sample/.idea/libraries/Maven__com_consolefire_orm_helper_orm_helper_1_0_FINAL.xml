@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.consolefire.orm.helper:orm-helper:1.0-FINAL">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/consolefire/orm/helper/orm-helper/1.0-FINAL/orm-helper-1.0-FINAL.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/consolefire/orm/helper/orm-helper/1.0-FINAL/orm-helper-1.0-FINAL-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/consolefire/orm/helper/orm-helper/1.0-FINAL/orm-helper-1.0-FINAL-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
