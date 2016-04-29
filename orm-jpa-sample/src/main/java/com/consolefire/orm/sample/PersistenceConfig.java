@@ -1,5 +1,6 @@
 package com.consolefire.orm.sample;
 
+import com.consolefire.orm.config.AuditPropertiesProvider;
 import com.consolefire.orm.config.OrmHelperPersistenceConfig;
 import com.consolefire.orm.helper.DataSourceTypeContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +67,7 @@ public class PersistenceConfig {
 
     @Bean(name = "ormHelper.defaultDataSourceType")
     public DataSourceTypeContext.DataSourceType defaultDsType(){
-        return DataSourceTypeContext.DataSourceType.SLAVE;
+        return DataSourceTypeContext.DataSourceType.MASTER;
     }
 
 }

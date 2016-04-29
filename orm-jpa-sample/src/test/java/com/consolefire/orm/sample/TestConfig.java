@@ -1,9 +1,10 @@
 package com.consolefire.orm.sample;
 
-import com.consolefire.orm.config.OrmHelperPersistenceConfig;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.test.context.TestPropertySource;
 
 /**
  * Created by sabuj.das on 14/04/16.

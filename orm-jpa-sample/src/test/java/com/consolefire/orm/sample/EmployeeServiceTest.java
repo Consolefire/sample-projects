@@ -29,14 +29,38 @@ public class EmployeeServiceTest {
 
 
     /*
+    drop database if exists office_master;
     create database office_master;
     use office_master;
-    create table employees ( id bigint not null auto_increment, email varchar(150) not null, name varchar(150) not null, primary key (id));
+    create table employees ( 
+        id bigint not null auto_increment, 
+        email varchar(150) not null, 
+        name varchar(150) not null, 
+        `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `created_by` varchar(150) NOT NULL DEFAULT 'DB_HACKER',
+        `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+        `updated_by` varchar(150) DEFAULT NULL,
+        primary key (id)
+    );
+    
     alter table employees add constraint UK_hxpym1ml3cufk46aws6660klf unique (name, email);
     insert  into employees (email, name) values ('sabuj.das@gmail.com', 'Sabuj Das');
+    
+    drop database if exists office_slave;
     create database office_slave;
     use office_slave;
-    create table employees ( id bigint not null auto_increment, email varchar(150) not null, name varchar(150) not null, primary key (id));
+    
+    create table employees ( 
+        id bigint not null auto_increment, 
+        email varchar(150) not null, 
+        name varchar(150) not null, 
+        `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        `created_by` varchar(150) NOT NULL DEFAULT 'DB_HACKER',
+        `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+        `updated_by` varchar(150) DEFAULT NULL,
+        primary key (id)
+    );
+    
     alter table employees add constraint UK_hxpym1ml3cufk46aws6660klf unique (name, email);
     insert  into employees (email, name) values ('sabuj.das@hotmail.com', 'Sabuj Das');
      */
@@ -56,6 +80,7 @@ public class EmployeeServiceTest {
         System.out.println(employee);
         Assert.assertNotNull(employee);
         Assert.assertEquals("sabuj.das@gmail.com", employee.getEmail());
+        Employee employee2 = employeeService.readFromSlave(1L);
     }
 
     @Test

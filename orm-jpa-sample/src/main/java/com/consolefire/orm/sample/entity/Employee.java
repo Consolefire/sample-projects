@@ -4,6 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import com.consolefire.orm.entity.AuditProperties;
+import com.consolefire.orm.entity.Auditable;
+import com.consolefire.orm.entity.AuditableEntityListener;
+
 import java.util.Objects;
 
 /**
@@ -13,6 +18,8 @@ import java.util.Objects;
 @Setter
 @Entity
 @Table(name = "employees", uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "email"})})
+@Auditable
+@EntityListeners({AuditableEntityListener.class})
 public class Employee {
 
     @Id
@@ -24,13 +31,17 @@ public class Employee {
     @Column(name = "email", nullable = false, length = 150)
     private String email;
 
+    @Embedded
+    private AuditProperties auditProperties;
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Employee employee = (Employee) o;
-        return Objects.equals(name, employee.name) &&
-                Objects.equals(email, employee.email);
+        return Objects.equals(name, employee.name) && Objects.equals(email, employee.email);
     }
 
     @Override
